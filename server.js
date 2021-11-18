@@ -8,6 +8,8 @@ const htmlRoute = require("./routes/htmlRouter");
 const PORT = process.env.PORT || 3001;
 
 require("./routes/htmlRouter")(app);
+require("./routes/apiRouter")(app);
+
 
 //calls funciton to start the server and tells us its working by printing to console
 app.listen(PORT, function () {
