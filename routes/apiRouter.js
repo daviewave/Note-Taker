@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   app.post("/api/notes", function (request, response) {
     //store the info from the new note in a variable 'newNote'
-    const newNote = request.body;
+    let newNote = request.body;
     console.log("NewNote: " + newNote);
     //confirm a request is being made
     console.log(
@@ -35,10 +35,18 @@ module.exports = function (app) {
     response.json(data);
   });
 
-  app.delete("/api/notes", function (request, response) {
-    //Need to figure out which note in the database is being requested to be deleted thru the unique id generated
-    //read the file containing all the notes and save each not that doesnt have the id of the note we want to get rid of
+  app.delete("/api/notes/:id", (request, response) => {
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    //deletes the note with the id
+    data.splice(request.params.id, 1);
+
     //copy the non-deleted notes onto a new file
+    fs.writeFileSync("./db/db.json", JSON.stringify(data, "/t"));
+    console.log(
+      `SUCCESS: ${request.params.id} HAS BEEN DELETED FROM THE DATABASE`
+    ); //confirm the note has been deleted
+
     //send the file
+    response.json(data);
   });
 };
