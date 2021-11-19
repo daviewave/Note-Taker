@@ -35,5 +35,10 @@ module.exports = function (app) {
     response.json(data);
   });
 
-  app.delete("/api/notes", function (request, response) {});
+  app.delete("/api/notes", function (request, response) {
+    //Need to figure out which note in the database is being requested to be deleted thru the unique id generated
+    //read the file containing all the notes and save each not that doesnt have the id of the note we want to get rid of
+    //copy the non-deleted notes onto a new file
+    //send the file
+  });
 };
