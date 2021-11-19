@@ -10,4 +10,8 @@ module.exports = function (app) {
     console.log(JSON.stringify(data));
     response.json(data);
   });
+
+  app.post("/api/notes", function (request, response) {});
+
+  app.delete("/api/notes", function (request, response) {});
 };
