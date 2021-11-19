@@ -7,6 +7,10 @@ const htmlRoute = require("./routes/htmlRouter");
 //set the port for the server
 const PORT = process.env.PORT || 3001;
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+
 require("./routes/htmlRouter")(app);
 require("./routes/apiRouter")(app);
 
